@@ -17,15 +17,23 @@ function submitBlog(event) {
     let inputTitle = document.getElementById("inputTitle").value
     let inputContent = document.getElementById("inputContent").value
     let inputImage = document.getElementById("inputImage").files
+    let startDate = document.getElementById("startDate").value
+    let endDate = document.getElementById("endDate").value
 
-    console.log("title", inputTitle)
+    let technologi = document.querySelector("input[name=radio]:checked");
+
+    console.log("title", technologi.id)
     console.log("content", inputContent)
+    console.log("date", startDate)
 
     inputImage = URL.createObjectURL(inputImage[0])
     console.log("image", inputImage)
 
     const blog = {
         title: inputTitle,
+        startDate: startDate,
+        endDate: endDate,
+        technologi: technologi.id,
         content: inputContent,
         image: inputImage,
         postAt: "09 juni 2023",
@@ -37,41 +45,9 @@ function submitBlog(event) {
     renderBlog()
 }
 
-// function showMeHelloWorld() {
-//     const container = document.getElementById("contents")
-//     container.innerHTML = '<p>Hello World</p>'
-// }
-
-// dataBlog = [
-//  {
-//     title: "title 1",
-//     content: "content 1"
-//  },
-//  {
-//     title: "title 1",
-//     content: "content 1"
-//  },
-//  {
-//     title: "title 2",
-//     content: "content 2"
-//  },
-//  {
-//     title: "title 1",
-//     content: "content 1"
-//  },
-//  {
-//     title: "title 2",
-//     content: "content 2"
-//  },
-//  {
-//     title: "title 3",
-//     content: "content 3"
-//  },
-// ]
-
 function renderBlog() {
     document.getElementById("contents").innerHTML = '<div style="justify-content: center;"><h1>My Project</h1></div>'
-   
+
     for (let index = 0; index < dataBlog.length; index++) {
         document.getElementById("contents").innerHTML += `
         <div class="blog-list-item">
@@ -90,8 +66,15 @@ function renderBlog() {
                     ${dataBlog[index].postAt} | ${dataBlog[index].author}
                 </div>
                 <p>
-                   ${dataBlog[index].content}
+                   ${dataBlog[index].startDate} | ${dataBlog[index].endDate}
                 </p>
+                <p>
+                    ${dataBlog[index].technologi}
+                </p>
+                <p>
+                    ${dataBlog[index].content}
+                </p>
+
             </div>
         </div>`
     }
