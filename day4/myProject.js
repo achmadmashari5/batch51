@@ -36,10 +36,10 @@ function submitBlog(event) {
         technologi: technologi.id,
         content: inputContent,
         image: inputImage,
-        postAt: "09 juni 2023",
+        postAt: new Date(),
         author: "Avicienna"
     }
-
+    
     dataBlog.push(blog)
     console.log("dataBlog", dataBlog)
     renderBlog()
