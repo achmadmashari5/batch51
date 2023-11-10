@@ -1,0 +1,162 @@
+<html>
+
+<head>
+    <title>Creating Blog Page</title>
+    <link rel="stylesheet" href="myProject.css" />
+</head>
+<style>
+    /* The container */
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Hide the browser's default radio button */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      border-radius: 50%;
+    }
+    
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+      background-color: #ccc;
+    }
+    
+    /* When the radio button is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+      background-color: #2196F3;
+    }
+    
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    
+    /* Show the indicator (dot/circle) when checked */
+    .container input:checked ~ .checkmark:after {
+      display: block;
+    }
+    
+    /* Style the indicator (dot/circle) */
+    .container .checkmark:after {
+         top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 5%;
+        background: white;
+    }
+    </style>
+<body>
+    
+
+    <!-- Blog -->
+    <!-- Form -->
+    <div class="blog">
+        <div class="blog-form">
+            <div class="form-container">
+                <form onsubmit="submitBlog(event)">
+                    <h1>Add My Project</h1>
+                    <div>
+                        <label for="inputTitle">Project Name</label>
+                        <input type="text" id="inputTitle" />
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="inputTitle">Start Date</label>
+                                    <input type="text" id="inputTitle" />
+                                </td>
+                                <td>
+                                    <label for="inputTitle">End Date</label>
+                                    <input type="text" id="inputTitle" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div>
+                        <label for="inputContent">Description</label>
+                        <textarea id="inputContent"></textarea>
+                    </div>
+                    <div>
+                        <label for="inputTitle">Technologies</label>
+                        
+                        <table>
+                            <tr >
+                                
+                                <td style="width: 200px;">
+                                    <label class="container">Node Js
+                                        <input type="radio" checked="checked" name="radio">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <label class="container">React Js
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      
+                                     
+                                </td>
+                                <td >
+
+                                    <label class="container">Next Js
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <label class="container">Typescript
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <label>Upload Image</label>
+                        <div class="input-blog-image-group">
+                            <label for="inputImage">
+                                <p>Attach File</p>
+                                <img src="assets/icon/file.png" alt="file" />
+                            </label>
+                            <input type="file" id="inputImage" hidden />
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button>Post Blog</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <hr class="line" />
+        <div id="contents" class="blog-list">
+            <!-- dynamic content would be here -->
+        </div>
+    </div>
+    <script src="myProject.js"></script>
+</body>
+
+</html>
