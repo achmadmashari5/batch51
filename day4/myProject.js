@@ -19,24 +19,25 @@ function submitBlog(event) {
     let inputImage = document.getElementById("inputImage").files
     let startDate = document.getElementById("startDate").value
     let endDate = document.getElementById("endDate").value
-
+    let xx = new Date(endDate) - new Date(startDate)
     let technologi = document.querySelector("input[name=radio]:checked");
-
+    let durasinya = new Date(xx)
     console.log("title", technologi.id)
     console.log("content", inputContent)
     console.log("date", startDate)
 
     inputImage = URL.createObjectURL(inputImage[0])
-    console.log("image", inputImage)
+    console.log("image", durasinya.getDate())
 
     const blog = {
         title: inputTitle,
         startDate: startDate,
         endDate: endDate,
+        durasi: durasinya.getDate() + " Days",
         technologi: technologi.id,
         content: inputContent,
         image: inputImage,
-        postAt: new Date(),
+        postAt: new Date().toDateString(),
         author: "Avicienna"
     }
     
@@ -47,7 +48,7 @@ function submitBlog(event) {
 
 function renderBlog() {
     document.getElementById("contents").innerHTML = '<div style="justify-content: center;"><h1>My Project</h1></div>'
-
+  
     for (let index = 0; index < dataBlog.length; index++) {
         document.getElementById("contents").innerHTML += `
         <div class="blog-list-item">
@@ -60,7 +61,7 @@ function renderBlog() {
                     <button class="btn-post">Delete Post</button>
                 </div>
                 <h1>
-                    <a href="project-detail.html" target="_blank">${dataBlog[index].title}</a>
+                    <a id=${index} href="project-detail.html"   onclick="savetolocal(dataBlog,id)" >${dataBlog[index].title}</a>
                 </h1>
                 <div class="detail-blog-content">
                     ${dataBlog[index].postAt} | ${dataBlog[index].author}
@@ -68,6 +69,11 @@ function renderBlog() {
                 <p>
                    ${dataBlog[index].startDate} | ${dataBlog[index].endDate}
                 </p>
+                <p>
+                <a>Duration : </a>
+                ${dataBlog[index].durasi}
+                </p>
+
                 <p>
                     ${dataBlog[index].technologi}
                 </p>
@@ -78,4 +84,13 @@ function renderBlog() {
             </div>
         </div>`
     }
+}
+
+function savetolocal(datanya,index)
+{
+ sessionStorage.setItem("dataSaya",JSON.stringify(datanya[index]))
+   //alert(JSON.stringify(datanya[index])) 
+   //let xx=  sessionStorage.getItem("dataSaya")
+   //alert(JSON.parse(xx)) 
+ //   console.log("datanya "+JSON.stringify(datanya[index]))
 }
